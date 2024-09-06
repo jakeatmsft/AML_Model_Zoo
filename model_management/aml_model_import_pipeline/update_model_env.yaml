@@ -1,0 +1,19 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+type: command
+
+name: update_model_env
+display_name: Update Model Environment
+description: Updates the model environment
+version: 1.0.0
+inputs:
+  model_package:
+    type: uri_folder
+outputs:
+  model_output:
+    type: uri_folder
+code: ./model_pipeline_src
+environment: azureml://registries/azureml/environments/python-sdk-v2/versions/17
+command: >-
+  python update_model_env.py 
+  --model_package ${{inputs.model_package}} 
+  --model_output ${{outputs.model_output}}

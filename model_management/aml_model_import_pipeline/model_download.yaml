@@ -1,0 +1,22 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+type: command
+
+name: model_download
+display_name: Download Catalog Model
+description: Aml component
+version: 0.0.1
+inputs:
+  registry: 
+    type: string
+  model_name:
+    type: string
+outputs:
+  model_output:
+    type: uri_folder
+code: ./model_pipeline_src
+environment: azureml://registries/azureml/environments/python-sdk-v2/versions/17
+command: >-
+  python model_download.py 
+  --registry ${{inputs.registry}} 
+  --model_name ${{inputs.model_name}} 
+  --model_output ${{outputs.model_output}}

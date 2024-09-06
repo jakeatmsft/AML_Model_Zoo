@@ -1,0 +1,24 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+type: command
+
+name: package_model
+display_name: Package Catalog Model
+description: Aml component
+version: 0.0.1
+inputs:
+  model_name:
+    type: string
+  model_version:
+    type: string
+  model_download:
+    type: uri_folder
+outputs:
+  model_output:
+    type: uri_folder
+code: ./model_pipeline_src
+environment: azureml://registries/azureml/environments/python-sdk-v2/versions/17
+command: >-
+  python package_model.py 
+  --model_name ${{inputs.model_name}} 
+  --model_version ${{inputs.model_version}}
+  --model_output ${{outputs.model_output}}
