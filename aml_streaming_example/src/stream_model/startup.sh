@@ -6,7 +6,7 @@ ls
 
 pip install poetry==1.6.1
 poetry config virtualenvs.create false
-pip install uvicorn
+pip install uvicorn fastapi
 
 # Navigate to the "packages" folder and install dependencies in each subfolder
 #for dir in packages/*/; do
@@ -15,7 +15,7 @@ pip install uvicorn
 
 python --version
 # Install any dependencies (if not already installed)
-poetry install --no-interaction --no-ansi
+#poetry install --no-interaction --no-ansi
 
 # Start the Uvicorn server
 exec uvicorn app.server:app --host 0.0.0.0 --port 5001
